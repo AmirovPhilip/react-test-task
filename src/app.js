@@ -4,7 +4,7 @@ import {
     Route,
     Link,
     Switch,
-} from 'react-router-dom'
+} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //containers
@@ -16,12 +16,14 @@ import NotFound from './containers/NotFound'
 
 //components
 import Header from './components/Header'
+import Sidebar from './components/Sidebar';
 
 const App =  (
     <MuiThemeProvider>
         <Router>
-            <div>
+            <div className="page-container">
                 <Header/>
+                <Sidebar/>
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route path='/login' component={Login}/>

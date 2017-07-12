@@ -23,8 +23,9 @@ module.exports = {
         './src/index.js',
     ],
     output: {
-        path: path.resolve('build'),
+        path: path.resolve('./build'),
         filename: 'index_bundle.js',
+        publicPath : '/build/'
     },
 
     module: {
@@ -47,15 +48,28 @@ module.exports = {
                 use: [
                     'style-loader',
                     {
-                        loader: 'css-loader',
+                        loader: 'style-loader',
                         options: { modules: true }
                     },
                 ],
             },
             {
                 test: /\.less$/,
-                use: [ 'style-loader', 'css-loader', 'less-loader' ]
-            }
+                use: [ 'style-loader', 'css-loader', 'resolve-url-loader', 'less-loader' ]
+            },
+            {
+                test: /\.(gif|jpg|png)/i,
+                exclude: /node_modules/,
+                use: ["url-loader?name=[path][name].[ext]"]
+            },
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: ["url-loader?limit=1000&mimetype=application/font-woff&name=[path][name].[ext]"]
+            },
+            {
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: ["file-loader?name=[path][name].[ext]"]
+            },
         ],
     },
 

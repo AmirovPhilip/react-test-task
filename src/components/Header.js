@@ -4,62 +4,63 @@ import {
     FlatButton,
     IconButton,
     MenuItem,
-    IconMenu
+    IconMenu,
 } from 'material-ui';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import { Link } from 'react-router-dom'
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import { Link, withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
+import * as home from '../redux/actions/Home';
 
-class Login extends React.Component {
-    static muiName = 'FlatButton';
+import './styles/Header.less'
 
-    render() {
-        return (
-            <FlatButton {...this.props} label="Login" />
-        );
+class Header extends React.Component {
+
+    constructor(props, context){
+        super(props, context);
+        this.sidebarToggle = this.sidebarToggle.bind(this);
     }
-}
 
-const Logged = (props) => (
-    <IconMenu
-        {...props}
-        iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
+    sidebarToggle(){
+        this.props.actionsHome.sidebarToggle();
     }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-    >
-        <MenuItem primaryText="Refresh" />
-        <Link to="/about"><MenuItem primaryText="About Us" /></Link>
-        <MenuItem primaryText="Sign out" />
-    </IconMenu>
-);
-Logged.muiName = 'IconMenu';
 
-const styles = {
-    background: '#1976D2',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 999
-}
-
-export default class Header extends React.Component {
     render() {
 
         const logged = true;
+        const { sidebarVisibility } = this.props.home;
+
+        const btn = sidebarVisibility ? (<NavigationClose onClick={this.sidebarToggle}/>) : (<NavigationMenu onClick={this.sidebarToggle}/>);
 
         return (
            <div className="page-header">
                <AppBar
-                   style={styles}
                    title={<Link to="/">Map Application</Link>}
-                   iconStyleLeft={{display: 'none'}}
-                   iconElementRight={logged ? <Logged /> : <Login />}
-               />
+                   iconElementLeft={<IconButton>{btn}</IconButton>}
+                   iconElementRight={logged ? <FlatButton label="Log Out" /> : <FlatButton label="Login" />}
+               >
+               </AppBar>
            </div>
 
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        home: state.home,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actionsHome: bindActionCreators(home, dispatch)
+    }
+}
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header));

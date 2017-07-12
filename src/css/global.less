@@ -1,9 +1,12 @@
+@import "./font-awesome-4.7.0/less/font-awesome";
+
 html, body {
   width: 100%;
   min-height: 100%;
   margin: 0;
   padding: 0;
   background: #fff;
+  font-family: Roboto, sans-serif;
 }
 
 a {
@@ -14,8 +17,19 @@ a {
   text-decoration: inherit;
 }
 
-.map-wrap {
+.page-container {
   width: 100%;
   height: calc(~"100vh - 64px");
   margin-top: 64px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.clearfix:after,
+.clearfix:before {
+  display: table;
+  content: '';
+  clear: both;
 }

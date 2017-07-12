@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-//import articles from './articles';
-//import user from './user';
+import home from './Home';
+import map from './Map';
 
 const rootReducer = combineReducers({
-    //articles,
-    //user
+    home,
+    map
 });
 
 export default rootReducer;

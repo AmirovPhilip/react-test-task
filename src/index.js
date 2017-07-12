@@ -18,7 +18,7 @@ injectTapEventPlugin();
 const render = Component => {
     ReactDOM.render(
         <AppContainer>
-            <Provider store={store} key={module.hot ? new Date() : undefined}>
+            <Provider store={store}>
                 <BrowserRouter>
                     { Component }
                 </BrowserRouter>
