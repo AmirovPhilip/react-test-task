@@ -1,59 +1,23 @@
 import React from 'react';
-//import {Row, Col, Button, Icon} from 'react-materialize'
-//import { bindActionCreators } from 'redux';
-//import { connect } from 'react-redux';
 
-
-//import * as articles from '../redux/actions/articles';
+import './styles/About.less'
 
 export default class About extends React.Component {
 
-    //constructor(props, context){
-    //    super(props, context);
-    //    this.addArticleDispatch = this.addArticleDispatch.bind(this);
-    //}
-    //
-    //addArticleDispatch(data){
-    //    this.props.actionsArticles.addArticle(data);
-    //}
-    //
-    //componentWillMount(){
-    //    const { login } = this.props.user;
-    //    if(login){
-    //        this.props.actionsArticles.getArticleFromServer();
-    //    }
-    //}
-
     render() {
-        //const { articlesArr } = this.props.articles;
-        //const { login } = this.props.user;
-        //
-        //if(!login){
-        //    return <Redirect push to='/login'/>;
-        //}
 
         return (
-            <div>
-                About
+            <div className="about-wrap">
+                <div className="container">
+                    <h2>About</h2>
+                    <div className="contacts">
+                        <p><span>Email:</span><a href="mailto:filip.amirov@gmail.com">filip.amirov@gmail.com</a></p>
+                        <p><span>GitHub:</span><a target="_blank" href="https://github.com/AmirovPhilip/react-test-task">github.com/AmirovPhilip/react-test-task</a></p>
+                        <p><span>Linkedin</span><a target="_blank" href="https://www.linkedin.com/in/amirov-philip-3386ba142/">www.linkedin.com/in/amirov-philip</a></p>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-//function mapStateToProps(state) {
-//    return {
-//        user: state.user,
-//        articles: state.articles
-//    };
-//}
-//
-//function mapDispatchToProps(dispatch) {
-//    return {
-//        actionsArticles: bindActionCreators(articles, dispatch)
-//    }
-//}
-//
-//export default withRouter(connect(
-//    mapStateToProps,
-//    mapDispatchToProps
-//)(Home));

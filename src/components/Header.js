@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import {
     AppBar,
     FlatButton,
@@ -20,10 +20,9 @@ class Header extends React.Component {
 
     constructor(props, context){
         super(props, context);
-        this.sidebarToggle = this.sidebarToggle.bind(this);
     }
 
-    sidebarToggle(){
+    sidebarToggle = () => {
         this.props.actionsHome.sidebarToggle();
     }
 
@@ -35,6 +34,7 @@ class Header extends React.Component {
         const btn = sidebarVisibility ? (<NavigationClose onClick={this.sidebarToggle}/>) : (<NavigationMenu onClick={this.sidebarToggle}/>);
 
         return (
+
            <div className="page-header">
                <AppBar
                    title={<Link to="/">Map Application</Link>}
@@ -47,6 +47,11 @@ class Header extends React.Component {
         )
     }
 }
+
+Header.propTypes = {
+    home: PropTypes.object,
+    actionsHome: PropTypes.object
+};
 
 function mapStateToProps(state) {
     return {

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import {List, ListItem} from 'material-ui/List';
+import UserIcon from 'material-ui/svg-icons/social/person';
 import { Link, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -23,23 +24,34 @@ class Sidebar extends React.Component {
 
         return (
             <Drawer className="sidebar" open={sidebarVisibility}>
-                <div>User</div>
+                <header>
+                    <div className="user-icon-wrap">
+                        <UserIcon style={{width: '40px', height: '40px'}}/>
+                    </div>
+                    <div className="user-email-wrap">
+                        <span>test@gmail.com</span>
+                    </div>
+                </header>
 
                 <List>
-                    <Link to="/"><ListItem insetChildren={true} primaryText="Map" /></Link>
+                    <Link to="/"><ListItem primaryText="Map" /></Link>
                 </List>
                 <List>
-                    <Link to="/about"><ListItem insetChildren={true} primaryText="About As" /></Link>
+                    <Link to="/about"><ListItem primaryText="About" /></Link>
                 </List>
-                <Divider inset={true} />
+                <Divider />
                 <List>
-                    <Link to="/login"><ListItem insetChildren={true} primaryText="Log Out" /></Link>
+                    <Link to="/login"><ListItem primaryText="Log Out" /></Link>
                 </List>
 
             </Drawer>
         );
     }
 }
+
+Sidebar.propTypes = {
+    sidebarVisibility: PropTypes.bool,
+};
 
 function mapStateToProps(state) {
     return {

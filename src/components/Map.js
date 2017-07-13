@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import {
     Map,
     Marker,
@@ -42,7 +42,6 @@ export default class CustomMap extends React.Component {
     }
 
     handleOpenDialog = (val, e) => {
-        console.log(val)
         this.setState({
             dialogOpen: true,
             deleteMarker: val,
@@ -206,3 +205,19 @@ export default class CustomMap extends React.Component {
         );
     }
 }
+
+CustomMap.propTypes = {
+    userLatitude: PropTypes.number,
+    userLongitude: PropTypes.number,
+    markersShow: PropTypes.bool,
+    saveBtnState: PropTypes.bool,
+    markers: PropTypes.array,
+    snackbarStatus: PropTypes.bool,
+    snackbarText: PropTypes.string,
+    deleteMarkerFromServer: PropTypes.func,
+    deleteMarkerFromUI: PropTypes.func,
+    markersVisibilityToggle: PropTypes.func,
+    markersMakerStatusToggle: PropTypes.func,
+    saveMarkers: PropTypes.func,
+    snackbarClose: PropTypes.func,
+};

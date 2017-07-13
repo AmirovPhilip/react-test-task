@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -31,6 +31,7 @@ class Home extends React.Component {
             <CustomMap {...this.props.map}
                        {...this.props.actionsMap}/>
         )
+
         if(userLatitude && userLongitude){
             return (
                 <div>
@@ -42,6 +43,13 @@ class Home extends React.Component {
         }
     }
 }
+
+Home.propTypes = {
+    map: PropTypes.object,
+    home: PropTypes.object,
+    actionsHome: PropTypes.object,
+    actionsMap: PropTypes.object
+};
 
 function mapStateToProps(state) {
     return {

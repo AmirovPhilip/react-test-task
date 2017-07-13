@@ -23,9 +23,9 @@ module.exports = {
         './src/index.js',
     ],
     output: {
-        path: path.resolve('./build'),
+        //path: path.resolve('./build'),
         filename: 'index_bundle.js',
-        publicPath : '/build/'
+        //publicPath : '/build/'
     },
 
     module: {

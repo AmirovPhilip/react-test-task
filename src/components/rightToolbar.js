@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import './styles/RightToolbar.less'
 
@@ -31,3 +31,12 @@ export default class RightToolbar extends React.Component {
         );
     }
 }
+
+RightToolbar.propTypes = {
+    markersMakerStatus: PropTypes.bool,
+    markersShow: PropTypes.bool,
+    saveBtnState: PropTypes.bool,
+    markersMakerStatusToggle: PropTypes.func,
+    markersVisibilityToggle: PropTypes.func,
+    saveMarkers: PropTypes.func,
+};
