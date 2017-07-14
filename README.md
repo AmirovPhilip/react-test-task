@@ -2,7 +2,7 @@
 
 ### This project is a test task using the following technologies:
 
-#####Front-end:
+######Front-end:
 
 + React.js;
 + Redux;
@@ -10,7 +10,7 @@
 + Less;
 + Webpack.
 
-#####Front-end:
+######Front-end:
 
 + Node.js + express;
 + MongoDB + Mongoose.
