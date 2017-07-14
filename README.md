@@ -20,22 +20,22 @@
 
 + Install packages 
 
-    <yarn install>
+    >>>yarn install
 
 + Build project
 
-    <yarn production>
+    >>>yarn production
 
 + Start node server
 
-    <node server.js>
+    >>>node server.js
 
 ### Development commands:
 
 + Build project to develop
                 
-    <yarn build>
+    >>>yarn build
 
 + Start dev-server
 
-    <yarn start>
+    >>>yarn start
