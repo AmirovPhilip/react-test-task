@@ -1,34 +1,10 @@
-var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+var config = require('../config');
 
-state = {
-    db: null
-};
+mongoose.connect(config.database, {
+    useMongoClient: true,
+});
 
-exports.connect = function (url, done) {
-    if(state.db) {
-        return done();
-    }
+mongoose.connection.on('error', console.error.bind(console, 'Mongo connection error:'));
 
-    mongoose.connect(url, function (err, db) {
-        if(err) {
-            return done(err);
-        }
-
-        console.log('Mongo connected');
-        state.db = db;
-        done();
-    })
-
-    //MongoClient.connect(url, function (err, db) {
-    //    if (err) {
-    //        return done(err);
-    //    }
-    //    state.db = db;
-    //    done();
-    //})
-}
-
-exports.get = function() {
-    return state.db;
-}
+module.exports = mongoose;

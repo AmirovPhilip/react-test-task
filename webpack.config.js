@@ -12,21 +12,41 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: 'body'
 });
+const webpackDefinePlugin = new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+});
 const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 
-module.exports = {
-    //context: path.resolve(__dirname, './src'),
-    entry: [
+var entry = null;
+var output = null;
+
+if(process.env.NODE_ENV) {
+    entry = [
         'react-hot-loader/patch',
         'webpack-dev-server/client?http://0.0.0.0:3000',
         'webpack/hot/only-dev-server',
         './src/index.js',
-    ],
-    output: {
-        //path: path.resolve('./build'),
+    ];
+    output = {
+        filename: 'index_bundle.js'
+    }
+} else {
+    entry = [
+        './src/index.js',
+    ];
+    output = {
+        path: path.resolve('./build'),
         filename: 'index_bundle.js',
-        //publicPath : '/build/'
-    },
+        publicPath : '/build/'
+    }
+}
+
+
+module.exports = {
+    //context: path.resolve(__dirname, './src'),
+
+    entry: entry,
+    output: output,
 
     module: {
         rules: [
@@ -77,6 +97,7 @@ module.exports = {
         HtmlWebpackPluginConfig,
         webpackCommonsChunkPluginConfig,
         HotModuleReplacementPlugin,
+        webpackDefinePlugin,
     ],
 
     resolve: {

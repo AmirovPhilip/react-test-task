@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as home from '../redux/actions/Home';
+import * as user from '../redux/actions/User';
 
 import './styles/Sidebar.less';
 
@@ -18,9 +19,16 @@ class Sidebar extends React.Component {
         super(props);
     }
 
+    logOut = () => {
+        const { session } = this.props.user;
+        if(session) {
+            this.props.actionsUser.logOutUser();
+        }
+    }
     render() {
 
         const { sidebarVisibility } = this.props.home;
+        const { name, email } = this.props.user;
 
         return (
             <Drawer className="sidebar" open={sidebarVisibility}>
@@ -29,7 +37,8 @@ class Sidebar extends React.Component {
                         <UserIcon style={{width: '40px', height: '40px'}}/>
                     </div>
                     <div className="user-email-wrap">
-                        <span>test@gmail.com</span>
+                        <span className="user">{name}</span>
+                        <span className="email">{email}</span>
                     </div>
                 </header>
 
@@ -41,7 +50,9 @@ class Sidebar extends React.Component {
                 </List>
                 <Divider />
                 <List>
-                    <Link to="/login"><ListItem primaryText="Log Out" /></Link>
+                    <ListItem
+                        primaryText="Log Out"
+                        onTouchTap={this.logOut}/>
                 </List>
 
             </Drawer>
@@ -51,17 +62,23 @@ class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
     sidebarVisibility: PropTypes.bool,
+    user: PropTypes.object,
+    home: PropTypes.object,
+    actionsHome: PropTypes.object,
+    actionsUser: PropTypes.object,
 };
 
 function mapStateToProps(state) {
     return {
+        user: state.user,
         home: state.home,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actionsHome: bindActionCreators(home, dispatch)
+        actionsHome: bindActionCreators(home, dispatch),
+        actionsUser: bindActionCreators(user, dispatch)
     }
 }
 

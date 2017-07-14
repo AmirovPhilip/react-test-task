@@ -1,9 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require('../db/db'),
+    Schema = mongoose.Schema;
 
-var Marker = new mongoose.Schema({
+var schema = new Schema({
     id: mongoose.Schema.ObjectId,
     latitude: Number,
     longitude: Number
 });
 
-module.exports = mongoose.model('Marker', Marker);
+module.exports = mongoose.model('Marker', schema);

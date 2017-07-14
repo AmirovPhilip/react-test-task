@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import {
+    withRouter,
+    Redirect
+} from 'react-router-dom';
 
 import CustomMap from '../components/Map';
 import Loading from '../components/Loading';
@@ -11,17 +14,26 @@ import '../css/global.less';
 
 import * as home from '../redux/actions/Home';
 import * as map from '../redux/actions/Map';
+import * as user from '../redux/actions/User';
 
 class Home extends React.Component {
 
+    componentWillMount() {
+        this.props.actionsUser.getSessionUser();
+    }
+
     componentDidMount(){
-        this.props.actionsMap.getUserCoords();
-        this.props.actionsMap.getMarkers();
+        const { session } = this.props.user;
+        if(session) {
+            this.props.actionsMap.getUserCoords();
+            this.props.actionsMap.getMarkers();
+        }
     }
 
     render() {
 
-        const { markersShow, markersMakerStatus, userLatitude, userLongitude, saveBtnState } = this.props.map;
+        const { userLatitude, userLongitude } = this.props.map;
+        const { session } = this.props.user;
 
         const loading = (
             <Loading/>
@@ -32,7 +44,14 @@ class Home extends React.Component {
                        {...this.props.actionsMap}/>
         )
 
-        if(userLatitude && userLongitude){
+        if(!session){
+            return (
+                <Redirect to={{
+                    pathname: '/login',
+                    state: { from: this.props.location }
+              }}/>
+            );
+        } else if(userLatitude && userLongitude){
             return (
                 <div>
                     {mapContainer}
@@ -47,14 +66,17 @@ class Home extends React.Component {
 Home.propTypes = {
     map: PropTypes.object,
     home: PropTypes.object,
+    user: PropTypes.object,
     actionsHome: PropTypes.object,
-    actionsMap: PropTypes.object
+    actionsMap: PropTypes.object,
+    actionUser: PropTypes.object,
 };
 
 function mapStateToProps(state) {
     return {
         home: state.home,
         map: state.map,
+        user: state.user
     };
 }
 
@@ -62,6 +84,7 @@ function mapDispatchToProps(dispatch) {
     return {
         actionsHome: bindActionCreators(home, dispatch),
         actionsMap: bindActionCreators(map, dispatch),
+        actionsUser: bindActionCreators(user, dispatch),
     }
 }
 
