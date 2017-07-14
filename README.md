@@ -1,6 +1,6 @@
-# react-test-task#
+# react-test-task
 
-### This project is a test task using the following technologies:###
+### This project is a test task using the following technologies:
 
 Front-end:
 
