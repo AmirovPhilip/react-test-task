@@ -18,24 +18,28 @@ Back-end:
 
 ### Production commands: ### 
 
-+ Install packages 
++ Install packages: 
 
     >yarn install
 
-+ Build project
++ Build project:
 
     >yarn production
 
-+ Start node server
++ Run Mongo database:
+
+    >mongod
+
++ Start node server:
 
     >node server.js
 
 ### Development commands: ###
 
-+ Build project to develop
++ Build project to develop:
                 
     >yarn build
 
-+ Start dev-server
++ Start dev-server:
 
     >yarn start
