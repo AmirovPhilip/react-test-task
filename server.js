@@ -42,17 +42,6 @@ app.post('/login', userController.login);
 app.get('/session', userController.session);
 app.post('/logout', userController.logout);
 
-app.get('/users', function (req, res) {
-    User = require('./backend/schema/user');
-    User.find({}, function (err, tester) {
-        if(err) {
-            return console.log(err)
-        }
-
-        res.send(tester);
-    })
-});
-
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 })
