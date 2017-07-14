@@ -1,8 +1,8 @@
 # react-test-task
 
-### This project is a test task using the following technologies:
+### This project is a test task using the following technologies:###
 
-######Front-end:
+######Front-end:######
 
 + React.js;
 + Redux;
@@ -10,32 +10,32 @@
 + Less;
 + Webpack.
 
-######Front-end:
+######Front-end:######
 
 + Node.js + express;
 + MongoDB + Mongoose.
 
 
-### Production commands:
+### Production commands: ### 
 
 + Install packages 
 
-    >>>yarn install
+    >yarn install
 
 + Build project
 
-    >>>yarn production
+    >yarn production
 
 + Start node server
 
-    >>>node server.js
+    >node server.js
 
-### Development commands:
+### Development commands: ###
 
 + Build project to develop
                 
-    >>>yarn build
+    >yarn build
 
 + Start dev-server
 
-    >>>yarn start
+    >yarn start
